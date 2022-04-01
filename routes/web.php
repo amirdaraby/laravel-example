@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\SliderController::class,'index']);
 Route::resource('/slider',\App\Http\Controllers\SliderController::class)->parameters(['slider'=>'id']);
 Route::delete('/slider/soft/{id}',[\App\Http\Controllers\SliderController::class,'softDelete'])->name('slider.soft');
 Route::get('/trash',[\App\Http\Controllers\SliderController::class,'trash'])->name('slider.trash');
@@ -23,4 +21,3 @@ Route::delete('/slider/force/{id}',[\App\Http\Controllers\SliderController::clas
 Route::patch('/restore/{id}',[\App\Http\Controllers\SliderController::class,'restore'])->name('slider.restore');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
